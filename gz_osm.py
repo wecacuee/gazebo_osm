@@ -6,7 +6,7 @@ from lxml import etree
 import argparse
 from dict2sdf import GetSDF
 from osm2dict import Osm2Dict
-from getMapImage import getMapImage
+from getMapImage import getMapImage, MPLBMap
 from getOsmFile import getOsmFile
 
 TIMER = 1
@@ -154,15 +154,6 @@ osmDictionary = getOsmFile(args.boundingbox,
 if TIMER:
     toc()
 
-if args.imageFile:
-    if TIMER:
-        tic()
-    print("Building the image file ...")
-    args.imageFile = args.directory + args.imageFile
-    getMapImage(args.osmFile, args.imageFile)
-    if TIMER:
-        toc()
-
 #Initialize the class
 if TIMER:
     tic()
@@ -174,6 +165,20 @@ print("Extracting the map data for gazebo ...")
 roadPointWidthMap, modelPoseMap, buildingLocationMap = osmRoads.getMapDetails()
 if TIMER:
     toc()
+
+if args.imageFile:
+    if TIMER:
+        tic()
+    print("Building the image file ...")
+    args.imageFile = args.directory + args.imageFile
+    #getMapImage(osmDictionary, args.imageFile)
+    mplbmap = MPLBMap(osmRoads.getPointBBox(args.boundingbox))
+    mplbmap.add_buildings(buildingLocationMap)
+    #mplbmap.add_roads(roadPointWidthMap)
+    mplbmap.save_image(args.imageFile)
+    if TIMER:
+        toc()
+
 if TIMER:
     tic()
 print("Building sdf file ...")

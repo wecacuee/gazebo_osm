@@ -16,12 +16,81 @@ try:
 except ImportError:
     HAS_MAPNIK = False
 
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib as mplb
+    HAS_MTPLT = True
+except ImportError:
+    HAS_MTPLT = False
+
+import numpy as np
+        
+from dict2sdf import dilate_polyline, split_roads, allclose_index
+
+
+RGBACOLORS = dict(
+    Red=[1,  0,  0, 1],
+    Blue=[0, 0, 1, 1],
+    Green=[0,1,0,1],
+    RedBright=[0.87,0.26,0.07,1],
+    Purple=[1,0,1,1],
+    Orange=[1,0.5088,0.0468,1],
+    Yellow=[1,1,0,1],
+    GroundGray=[0.3,0.3,0.3,1]
+    )
+
+class MPLBMap():
+    def __init__(self, bbox):
+        self.fig, self.ax = plt.subplots(
+            subplot_kw=dict(xmargin=0, ymargin=0),
+            linewidth=0, dpi=300)
+        self.fig.set_layout_engine('tight', pad=0, w_pad=0, h_pad=0)
+        self.bbox = bbox
+        self.ax.set_xlim(bbox[0], bbox[2])
+        self.ax.set_ylim(bbox[1], bbox[3])
+        self.ax.axis('off')
+        self.ax.axis('equal')
+
+    def add_road(self, road_name, width, road_points):
+        if not road_points.shape[1]:
+            return
+        multiroads = split_roads(road_name, road_points)
+        if len(multiroads) >= 2:
+            for i, roads in enumerate(multiroads):
+                self.add_road(road_name + '_p%d' % i, width, roads)
+            return
+
+        if np.all(road_points[:2, 0] == road_points[:2, -1]):
+            dilated_road_points = road_points[:2, :].T
+        else:
+            dilated_road_points = np.asarray(dilate_polyline(road_points, width))
+        self.ax.add_patch(mplb.patches.Polygon(
+            dilated_road_points[:-1], color=RGBACOLORS['GroundGray']))
+            
+
+    def add_roads(self, roadPointWidthMap):
+        for road_name, road_data in roadPointWidthMap.items():
+            self.add_road(road_name, road_data['width'], road_data['points'])
+
+    def add_buildings(self, buildingLocationMap):
+        for building_name, building in buildingLocationMap.items():
+            self.add_building(building['mean'],
+                        building['points'],
+                        building_name,
+                        building['color'],
+                        building['height'])
+    def add_building(self, mean, pointList, building_name, color, height):
+        self.ax.add_patch(mplb.patches.Polygon(pointList[:2, :-1].T, 
+                                               color=RGBACOLORS[color]))
+
+
+    def save_image(self, image_file):
+        self.fig.savefig(image_file)
 
 def getMapImage(osmFile, map_output):
     '''Uses the data from the osmFile to out a .png image
        of the area depicted by the input file'''
-
-    if not HAS_MAPNIK:
+    if not HAS_MAPNIK :
         print ('Error: Mapnik module is missing. ' +
                'Please install for getting the image functionality.')
         return -2
