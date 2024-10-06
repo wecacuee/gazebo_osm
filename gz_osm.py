@@ -180,11 +180,11 @@ print("Building sdf file ...")
 #Initialize the getSdf class
 sdfFile = GetSDF()
 
-
 #Set up the spherical coordinates
 sdfFile.addSphericalCoords(osmRoads.getLat(), osmRoads.getLon())
 #add Required models
 sdfFile.includeModel("sun")
+sdfFile.addGroundPlane(osmRoads.getPointBBox(args.boundingbox))
 for model in modelPoseMap.keys():
     points = modelPoseMap[model]['points']
     if len(points):
@@ -196,18 +196,19 @@ for building in buildingLocationMap.keys():
     sdfFile.addBuilding(buildingLocationMap[building]['mean'],
                         buildingLocationMap[building]['points'],
                         building,
-                        buildingLocationMap[building]['color'])
+                        buildingLocationMap[building]['color'],
+                        buildingLocationMap[building]['height'])
 
 #Include the roads in the map in sdf file
 for road in roadPointWidthMap.keys():
-    sdfFile.addRoad(road)
-    sdfFile.setRoadWidth(roadPointWidthMap[road]['width'], road)
-    points = roadPointWidthMap[road]['points']
-    for point in range(len(points[0, :])):
-        sdfFile.addRoadPoint([points[0, point],
-                              points[1, point],
-                              points[2, point]],
-                             road)
+    sdfFile.addRoad(road, roadPointWidthMap[road]['width'], roadPointWidthMap[road]['points'])
+    # sdfFile.setRoadWidth(roadPointWidthMap[road]['width'], road)
+    # points = roadPointWidthMap[road]['points']
+    # for point in range(len(points[0, :])):
+    #     sdfFile.addRoadPoint([points[0, point],
+    #                           points[1, point],
+    #                           points[2, point]],
+    #                          road)
 
 #output sdf File
 sdfFile.writeToFile(args.outFile)

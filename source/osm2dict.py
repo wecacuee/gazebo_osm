@@ -25,7 +25,7 @@ class Osm2Dict:
         self.flags = flags
         #Radius of the Earth
         self.R = 6371e3 # m
-
+        self.bbox = None
         #Dictionaries to store results
         self.records = dict()
         self.models = dict()
@@ -63,36 +63,53 @@ class Osm2Dict:
                               })
 
         self.amenityList = dict({"school": {"color": "Purple",
-                                            "occurence": -1},
+                                            "occurence": -1,
+                                            "height": 3},
                                  "post_office": {'color': 'Orange',
-                                                 'occurence': -1},
+                                                 'occurence': -1,
+                                            "height": 3},
                                 #  "university": {"color": "Purple",
-                                #                 'occurence': -1},
+                                #                 'occurence': -1,
+                                            # "height": 3},
                                  "library": {"color": "Purple",
-                                             'occurence': -1},
+                                             'occurence': -1,
+                                            "height": 3},
                                  "bar": {"color": "Blue",
-                                         'occurence': -1},
+                                         'occurence': -1,
+                                            "height": 3},
                                  "cafe": {'color': "Blue",
-                                          'occurence': -1},
+                                          'occurence': -1,
+                                            "height": 3},
                                  "pub": {"color": "Blue",
-                                         'occurence': -1},
+                                         'occurence': -1,
+                                            "height": 3},
                                  "restaurant": {"color": "Blue",
-                                                'occurence': -1},
+                                                'occurence': -1,
+                                            "height": 3},
                                  "fast_food": {"color": "Blue",
-                                               'occurence': -1},
+                                               'occurence': -1,
+                                            "height": 3},
                                  "college": {"color": "Purple",
-                                             'occurence': -1},
+                                             'occurence': -1,
+                                            "height": 3},
                                  "kindergarten": {"color": "Purple",
-                                                  'occurence': -1}
+                                                  'occurence': -1,
+                                            "height": 3},
+                                "parking": {'color': "GroundGray",
+                                            "occurence": -1,
+                                            "height": 0.01}
                                  })
+        self.landuseList = dict({"grass": {"color": "Green", 
+                                           'occurence': -1,
+                                            "height": 0.01}})
 
         self.node = {data[i].get("data").get("id"): data[i].get('data')
                      for i in range(len(data))
                      if data[i].get("type") == "node"}
 
-        self.ways = [data[i].get('data')
+        self.ways = {data[i].get("data").get("id"): data[i].get('data')
                      for i in range(len(data))
-                     if data[i].get("type") == "way"]
+                     if data[i].get("type") == "way"}
 
     def getPoints(self, coords):
         '''Input : latitude and longitudnal coordinates
@@ -131,26 +148,18 @@ class Osm2Dict:
     def latLonToPoints(self, node_ref):
         '''Pulls out the latitude and longitudes of the nodes in the
            list of nodes and gets the points in the gazebo frame'''
-        coords = np.array([])
+        coords = []
         for node in node_ref:
-
-            coords = np.append(coords,
-                               self.node[node]
-                               .get("lon"))
-            coords = np.append(coords,
-                               self.node[node]
-                               .get("lat"))
-            coords = np.reshape(coords,
-                                (len(coords)//2,
-                                 2))
-
-        pointsXYZ = self.getPoints(coords)
+            coords.append([self.node[node].get("lon"),
+                           self.node[node].get("lat")])
+        
+        pointsXYZ = self.getPoints(np.asarray(coords))
         return pointsXYZ
 
     def getRoadDetails(self):
         '''Returns a list of roads with corresponding widths'''
          # get the road latitude and longitudes
-        for way in range(len(self.ways)):
+        for way in self.ways.keys():
             tagData = self.ways[way].get("tag")
             if "highway" in tagData:
                 typeHighway = tagData.get("highway")
@@ -209,11 +218,17 @@ class Osm2Dict:
 
     def getBuildingDetails(self):
         '''Returns a list of buildings to be included in the map'''
-        building = [self.data[i].get("data")
-                    for i in range(len(self.data))
-                    if "building" in self.data[i].get("data").get("tag")]
+        building = [d
+                    for d in self.data
+                    if ("building" in d.get("data").get("tag")
+                        and d.get("type") in ("way", "relation"))]
 
-        for element in building:
+        for element_w_type in building:
+            e_type = element_w_type.get("type")
+            element = element_w_type.get("data")
+            tagData = element.get("tag")
+            
+            
             tagData = element.get("tag")
             if "name" in tagData:
                 buildingName = tagData.get("name")
@@ -224,9 +239,24 @@ class Osm2Dict:
             if "name_1" in tagData:
                 buildingName += tagData.get("name_1")
 
-            node_ref = element.get("nd")
-
-            if node_ref:
+            if e_type == "relation":
+                members = [self.ways[m['ref']]
+                    for m in element.get("member")
+                    if m.get('type') == 'way' and m.get('role') == 'outer']
+                collected_node_ref = [] 
+                for element in members:
+                    node_ref = element.get("nd")
+                    if len(node_ref) <= 2 or node_ref[0] != node_ref[-1]:
+                        if len(collected_node_ref) and collected_node_ref[-1] == node_ref[0]:
+                            collected_node_ref.append(node_ref[1:])
+                        else:
+                            collected_node_ref.append(node_ref)
+                if len(collected_node_ref):
+                    members = [{'nd': sum(collected_node_ref, [])}]
+            else:
+                members = [element]
+            for i, element in enumerate(members):
+                node_ref = element.get("nd")
                 location = self.latLonToPoints(node_ref)
 
                 buildingLoc = np.array([[sum(location[0, :]) /
@@ -236,22 +266,36 @@ class Osm2Dict:
                                         [sum(location[2, :]) /
                                          len(location[2, :])]]
                                        )
-
+                buildingName = ((buildingName + "_p%d" % i) 
+                                if len(members) > 1 
+                                else buildingName)
                 self.buildings[buildingName] = {"mean":
                                                 buildingLoc,
                                                 "points": location,
-                                                "color": "Red"}
+                                                "color": "Red",
+                                                "height": 3}
 
-        amenity = [self.data[i].get("data")
+        amenity = [self.data[i]
                    for i in range(len(self.data))
-                   if "amenity" in self.data[i].get("data").get("tag")]
+                   if self.data[i].get("data").get("tag").get("amenity")
+                   in self.amenityList]
 
-        for element in amenity:
+        for element_w_type in amenity:
+            e_type = element_w_type.get("type")
+            element = element_w_type.get("data")
             tagData = element.get("tag")
-            if tagData.get("amenity") in self.amenityList.keys():
-
-                amenity = tagData.get("amenity")
-
+            thisamenity = tagData.get("amenity")
+            default_name = thisamenity +"_" + str(element.get("id"))
+            if e_type == "relation":
+                members = [self.ways[m['ref']]
+                    for m in element.get("member")
+                    if m.get('type') == 'way' and m.get('role') == 'outer']
+                name = tagData.get("name", default_name)
+                print("Parsing relation amenity: ", name)
+            else:
+                members = [element]
+                name = tagData.get("name", default_name)
+            for element in members:
                 node_ref = element.get("nd")
                 if node_ref:
                     location = self.latLonToPoints(node_ref)
@@ -264,18 +308,68 @@ class Osm2Dict:
                                                  len(location[2, :])]]
                                                )
 
-                    self.amenityList[amenity]['occurence'] += 1
-                    repNum = self.amenityList[amenity]['occurence']
+                    self.amenityList[thisamenity]['occurence'] += 1
+                    repNum = self.amenityList[thisamenity]['occurence']
 
-                    self.buildings[amenity +
-                                   "_" +
-                                   str(repNum)] = {"mean": amenityLocation,
+                    self.buildings[name + "_%d" %
+                                   element.get("id")] = {"mean": amenityLocation,
                                                    "points": location,
                                                    "color":
                                                    self.amenityList
-                                                   [amenity]
-                                                   ['color']
+                                                   [thisamenity]
+                                                   ['color'],
+                                                   "height":
+                                                   self.amenityList
+                                                   [thisamenity]
+                                                   ['height'],
                                                    }
+        landuses = [self.data[i]
+                   for i in range(len(self.data))
+                   if self.data[i].get("data").get("tag").get("landuse") in 
+                   self.landuseList]
+        
+        for element_w_type in landuses:
+            e_type = element_w_type.get("type")
+            element = element_w_type.get("data")
+            tagData = element.get("tag")
+            thislanduse = tagData.get("landuse")
+            default_name = thislanduse +"_" + str(element.get("id"))
+            if e_type == "relation":
+                members = [self.ways[m['ref']]
+                    for m in element.get("member")
+                    if m.get('type') == 'way' and m.get('role') == 'outer']
+                name = tagData.get("name", default_name)
+                print("Parsing relation Name: ", name)
+            else:
+                members = [element]
+                name = tagData.get("name", default_name)
+            for element in members:
+                node_ref = element.get("nd")
+                if node_ref:
+                    location = self.latLonToPoints(node_ref)
+
+                    landuseLocation = np.array([[sum(location[0, :]) /
+                                                 len(location[0, :])],
+                                                [sum(location[1, :]) /
+                                                 len(location[1, :])],
+                                                [sum(location[2, :]) /
+                                                 len(location[2, :])]]
+                                               )
+
+                    self.landuseList[thislanduse]['occurence'] += 1
+                    repNum = self.landuseList[thislanduse]['occurence']
+                    self.buildings[name + "_%d" % element.get("id")
+                                   ] = {"mean": landuseLocation,
+                                                   "points": location,
+                                                   "color":
+                                                   self.landuseList
+                                                   [thislanduse]
+                                                   ['color'],
+                                                   "height": 
+                                                   self.landuseList
+                                                   [thislanduse]
+                                                   ['height']
+                                                   } 
         return
         service = [self.data[i].get("data")
                    for i in range(len(self.data))
@@ -341,3 +435,10 @@ class Osm2Dict:
     def getLon(self):
         '''Get the longitude of the start point'''
         return self.lonStart
+    
+    def getPointBBox(self, latlongbbox):
+        pointsXYZ = self.getPoints(np.asarray(latlongbbox).reshape(2, 2))
+        minXYZ = np.min(pointsXYZ, axis=1)
+        maxXYZ = np.max(pointsXYZ, axis=1)
+        self.bbox = [minXYZ[0], minXYZ[1], maxXYZ[0], maxXYZ[1]]
+        return self.bbox
