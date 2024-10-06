@@ -12,6 +12,27 @@ import lxml.etree as Et
 import xml.dom.minidom as minidom
 import numpy
 
+# Copied from here: https://github.com/gazebosim/gazebo-classic/blob/gazebo11/media/materials/scripts/gazebo.material
+MATERIALDICT = dict(
+    Red=dict(ambient="1  0  0 1",
+            diffuse="1 0 0 1",
+            specular="0.1 0.1 0.1 1"),
+    RedBright=dict(ambient="0.87 0.26 0.07 1",
+            diffuse="0.87 0.26 0.07 1",
+            specular="0.87 0.26 0.07 1"),
+    Purple=dict(ambient="1 0 1 1",
+            diffuse="1 0 1 1",
+            specular="0.1 0.1 0.1 1"),
+    Orange=dict(ambient="1 0.5088 0.0468 1",
+            diffuse="1 0.5088 0.0468 1",
+            specular="0.5 0.5 0.5 1"),    
+    Blue=dict(ambient="0 0 1 1",
+            diffuse="0 0 1 1",
+            specular="0.1 0.1 0.1 1"),
+    Yellow=dict(ambient="1 1 0 1",
+            diffuse="1 1 0 1",
+            specular="0 0 0 0")
+    )
 
 class GetSDF:
 
@@ -47,7 +68,7 @@ class GetSDF:
         ''' Include models in gazebo database'''
         includeModel = Et.SubElement(self.sdf.find('world'), 'include')
         includeUri = Et.SubElement(includeModel, 'uri')
-        includeUri.text = "model://" + modelName
+        includeUri.text = "https://fuel.gazebosim.org/1.0/OpenRobotics/models/" + modelName
         return includeModel
 
     def addModel(self, mainModel, modelName, pose):
@@ -99,59 +120,27 @@ class GetSDF:
         static = Et.SubElement(building, 'static')
         static.text = 'true'
         mainPose = Et.SubElement(building, 'pose')
-        mainPose.text = (str(mean[0, 0]) +
-                         " " + str(mean[1, 0]) +
-                         " " + str(mean[2, 0]) +
-                         " 0 0 0")
-
-        yaw = [numpy.arctan2((pointList[1, point] - pointList[1, point + 1]),
-                             (pointList[0, point] - pointList[0, point + 1]))
-               for point in range(numpy.size(pointList, 1)-1)]
-
-        distance = [numpy.sqrt(((pointList[1, point] -
-                                 pointList[1, point + 1])**2 +
-                                (pointList[0, point] -
-                                 pointList[0, point + 1])**2))
-                    for point in range(numpy.size(pointList, 1)-1)]
-
-        meanPoint = [[(pointList[0, point] +
-                      pointList[0, point + 1])/2 - mean[0, 0],
-                     (pointList[1, point] +
-                      pointList[1, point + 1])/2 - mean[1, 0], 0]
-                     for point in range(numpy.size(pointList, 1)-1)]
-
-        for point in range(len(yaw)):
-
-            link = Et.SubElement(building, 'link')
-            link.set('name', (building_name + '_' + str(point)))
-            collision = Et.SubElement(link, 'collision')
-            collision.set('name', (building_name + '_' + str(point)))
-
-            geometry = Et.SubElement(collision, 'geometry')
-            box = Et.SubElement(geometry, 'box')
-            Et.SubElement(box, 'size').text = str(distance[point]) + ' 0.2 0'
-
-            visual = Et.SubElement(link, 'visual')
-            visual.set('name', (building_name + '_' + str(point)))
-
-            geometry = Et.SubElement(visual, 'geometry')
-            box = Et.SubElement(geometry, 'box')
-            Et.SubElement(box, 'size').text = str(distance[point]) + ' 0.2 0'
-
-            material = Et.SubElement(visual, 'material')
-            script = Et.SubElement(material, 'script')
-            Et.SubElement(script, 'uri').text = ('file://media/materials/' +
-                                                 'scripts/gazebo.material')
-            Et.SubElement(script, 'name').text = 'Gazebo/' + color
-            Et.SubElement(link, 'pose').text = (str(meanPoint[point][0]) +
-                                                ' ' +
-                                                str(meanPoint[point][1]) +
-                                                ' 0 0 0 ' +
-                                                str(yaw[point]))
+        mainPose.text = '0 0 0 0 0 0'
+        link = Et.SubElement(building, 'link')
+        link.set('name', (building_name))
+        collision = Et.SubElement(link, 'collision')
+        collision.set('name', (building_name))
+        visual = Et.SubElement(link, 'visual')
+        visual.set('name', (building_name))
+        material = Et.SubElement(visual, 'material')
+        for col_se in 'ambient diffuse specular'.split():
+            Et.SubElement(material, col_se).text = MATERIALDICT[color][col_se]
+        Et.SubElement(link, 'pose').text = '0 0 0 0 0 0'
+        for colvis in (collision, visual):
+            geometry = Et.SubElement(colvis, 'geometry')
+            polyline = Et.SubElement(geometry, 'polyline')
+            Et.SubElement(polyline, 'height').text = "1"
+            for point in range(numpy.size(pointList, 1)):
+                Et.SubElement(polyline, 'point').text = \
+                    "%f %f" % tuple(pointList[:2, point].tolist())
 
     def writeToFile(self, filename):
         '''Write sdf file'''
-        outfile = open(filename, "w")
-        outfile.write(Et.tostring(self.sdf, pretty_print=True,
-                                  xml_declaration=True))
-        outfile.close()
+        with open(filename, "wb") as outfile:
+            outfile.write(Et.tostring(self.sdf, pretty_print=True,
+                                    xml_declaration=True))

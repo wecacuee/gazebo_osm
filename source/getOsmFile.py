@@ -8,7 +8,7 @@
 #             Stores it in file with the specified name
 ##############################################################################
 
-import urllib2
+import urllib
 import osmapi
 
 
@@ -23,26 +23,13 @@ def getOsmFile(box, outputFile='map.osm', inputOsmFile=''):
     if inputOsmFile:
         outputFile = inputOsmFile
     else:
-        try:
-            osmFile = urllib2.urlopen('http://api.openstreetmap.org' +
+        with  urllib.request.urlopen('http://api.openstreetmap.org' +
                                       '/api/0.6/map?bbox='
-                                      + str(box)[1:-1].replace(" ", ""))
-        except urllib2.HTTPError:
-            print ("\nError:\tPlease check the bounding box input arguments"
-                   + "\n\tFormat: MinLon MinLat MaxLon MaxLat")
-            return {}
-        osm = open(outputFile, 'w')
+                                      + str(box)[1:-1].replace(" ", "")) as osmFile:
+            with open(outputFile, 'w') as osm:
+                osm.write(osmFile.read().encode('utf-8'))
 
-        osm.write(osmFile.read())
-
-        osm.close()
-
-    osmRead = open(outputFile, 'r')
-
-    myapi = osmapi.OsmApi()
-
-    dataDict = myapi.ParseOsm(osmRead.read())
-
-    osmRead.close()
+    with open(outputFile, 'r') as osmRead:
+        dataDict = osmapi.parser.ParseOsm(osmRead.read())
 
     return dataDict

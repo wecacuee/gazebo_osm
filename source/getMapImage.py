@@ -27,7 +27,7 @@ def getMapImage(osmFile, map_output):
         return -2
 
     if osmFile == '':
-        print 'Error: getMapImage::No File Recieved'
+        print ('Error: getMapImage::No File Recieved')
         return -1
 
     highwaList = dict({"motorway": {'width': 4,
@@ -68,12 +68,11 @@ def getMapImage(osmFile, map_output):
 
         rule.filter = mapnik.Expression('[highway]=' + "'" + highwayType + "'")
 
-        stk = mapnik.Stroke()
-        stk.color = mapnik.Color(highwaList[highwayType]['color'])
-        stk.line_cap = mapnik.line_cap.ROUND_CAP
-        stk.width = highwaList[highwayType]['width']
 
-        line_symbolizer = mapnik.LineSymbolizer(stk)
+        line_symbolizer = mapnik.LineSymbolizer()
+        line_symbolizer.stroke = mapnik.Color(highwaList[highwayType]['color'])
+        line_symbolizer.stroke_linecap = mapnik.stroke_linecap.ROUND_CAP
+        line_symbolizer.stroke_width = highwaList[highwayType]['width']
 
         rule.symbols.append(line_symbolizer)
 

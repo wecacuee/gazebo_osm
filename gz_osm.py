@@ -26,7 +26,7 @@ def toc():
                - startTime_for_tictoc)
                + " seconds.")
     else:
-        print "Toc: start time not set"
+        print ("Toc: start time not set")
 
 
 parser = argparse.ArgumentParser()
@@ -101,9 +101,9 @@ if args.interactive:
           " coordinates of the area or select from" +
           " default by hitting return twice \n")
 
-    startCoords = raw_input("Enter starting coordinates: " +
+    startCoords = input("Enter starting coordinates: " +
                             "[lon lat] :").split(' ')
-    endCoords = raw_input("Enter ending coordnates: [lon lat]: ").split(' ')
+    endCoords = input("Enter ending coordnates: [lon lat]: ").split(' ')
 
     if (startCoords and endCoords and
             len(startCoords) == 2 and len(endCoords) == 2):
@@ -115,7 +115,7 @@ if args.interactive:
 
     else:
 
-        choice = raw_input("Default Coordinate options: West El " +
+        choice = input("Default Coordinate options: West El " +
                            "Camino Real Highway, CA (2), Bethlehem," +
                            " PA (default=1): ")
 
@@ -127,7 +127,7 @@ if args.interactive:
             startCoords = [37.385844, -122.101464]
             endCoords = [37.395664, -122.083697]
 
-    option = raw_input("Do you want to view the area specified? [Y/N]" +
+    option = input("Do you want to view the area specified? [Y/N]" +
                        " (default: Y): ").upper()
 
     osmFile = 'map.osm'
@@ -140,16 +140,15 @@ if args.interactive:
         args.imageFile = 'map.png'
 
 if args.inputOsmFile:
-    f = open(args.inputOsmFile, 'r')
-    root = etree.fromstring(f.read())
-    f.close()
-    args.boundingbox = [root[0].get('minlon'),
+    with open(args.inputOsmFile, 'rb') as f:
+        root = etree.fromstring(f.read())
+    args.boundingbox = list(map(float, [root[0].get('minlon'),
                         root[0].get('minlat'),
                         root[0].get('maxlon'),
-                        root[0].get('maxlat')]
+                        root[0].get('maxlat')]))
 if TIMER:
     tic()
-print "Downloading the osm data ... "
+print("Downloading the osm data ... ")
 osmDictionary = getOsmFile(args.boundingbox,
                            args.osmFile, args.inputOsmFile)
 if TIMER:
@@ -158,7 +157,7 @@ if TIMER:
 if args.imageFile:
     if TIMER:
         tic()
-    print "Building the image file ..."
+    print("Building the image file ...")
     args.imageFile = args.directory + args.imageFile
     getMapImage(args.osmFile, args.imageFile)
     if TIMER:
@@ -170,14 +169,14 @@ if TIMER:
 osmRoads = Osm2Dict(args.boundingbox[0], args.boundingbox[1],
                     osmDictionary, flags)
 
-print "Extracting the map data for gazebo ..."
+print("Extracting the map data for gazebo ...")
 #get Road and model details
 roadPointWidthMap, modelPoseMap, buildingLocationMap = osmRoads.getMapDetails()
 if TIMER:
     toc()
 if TIMER:
     tic()
-print "Building sdf file ..."
+print("Building sdf file ...")
 #Initialize the getSdf class
 sdfFile = GetSDF()
 
@@ -188,9 +187,10 @@ sdfFile.addSphericalCoords(osmRoads.getLat(), osmRoads.getLon())
 sdfFile.includeModel("sun")
 for model in modelPoseMap.keys():
     points = modelPoseMap[model]['points']
-    sdfFile.addModel(modelPoseMap[model]['mainModel'],
-                     model,
-                     [points[0, 0], points[1, 0], points[2, 0]])
+    if len(points):
+        sdfFile.addModel(modelPoseMap[model]['mainModel'],
+                        model,
+                        [points[0, 0], points[1, 0], points[2, 0]])
 
 for building in buildingLocationMap.keys():
     sdfFile.addBuilding(buildingLocationMap[building]['mean'],

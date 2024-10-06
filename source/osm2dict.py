@@ -24,7 +24,7 @@ class Osm2Dict:
         self.displayBuildings = "b" in flags
         self.flags = flags
         #Radius of the Earth
-        self.R = 6371
+        self.R = 6371e3 # m
 
         #Dictionaries to store results
         self.records = dict()
@@ -44,21 +44,21 @@ class Osm2Dict:
         #associating them with models in gazebo and their occurences
         self.modelType = ['highway', 'amenity', 'building', 'emergency']
 
-        self.addModel = dict({"stop": {"modelName": "stop_sign",
+        self.addModel = dict({"stop": {"modelName": "Stop Sign",
                                        "occurence": -1},
-                              "street_lamp": {"modelName": "lamp_post",
+                              "street_lamp": {"modelName": "Lamp Post",
                                               "occurence": -1},
                               "traffic_signals": {"modelName":
-                                                  "construction_cone",
+                                                  "Construction Cone",
                                                   "occurence": -1},
-                              "fire hydrant": {"modelName": "fire_hydrant",
+                              "fire hydrant": {"modelName": "Fire hydrant",
                                                "occurence": -1},
-                              "give_way": {"modelName": "speed_limit",
+                              "give_way": {"modelName": "Speed limit sign",
                                            "occurence": -1},
                               "bus_stop": {"modelName":
-                                           "robocup14_spl_goal",
+                                           "RoboCup 2014 SPL Goal",
                                            "occurence": -1},
-                              "fuel": {'modelName': "gas_station",
+                              "fuel": {'modelName': "Gas Station",
                                        'occurence': -1}
                               })
 
@@ -66,8 +66,8 @@ class Osm2Dict:
                                             "occurence": -1},
                                  "post_office": {'color': 'Orange',
                                                  'occurence': -1},
-                                 "university": {"color": "Purple",
-                                                'occurence': -1},
+                                #  "university": {"color": "Purple",
+                                #                 'occurence': -1},
                                  "library": {"color": "Purple",
                                              'occurence': -1},
                                  "bar": {"color": "Blue",
@@ -122,9 +122,10 @@ class Osm2Dict:
                   np.sin(np.radians(self.latStart)) *
                   np.cos(lat2) * np.cos(dLon)))
 
-        point = np.array([distance*np.cos(angles) * 1000,
-                          -distance*np.sin(angles) * 1000,
-                          np.zeros(np.shape(distance))*1000])
+        point = np.array([distance*np.cos(angles),# * 1000,
+                          -distance*np.sin(angles),# * 1000,
+                          np.zeros(np.shape(distance))#*1000
+                          ])
         return point
 
     def latLonToPoints(self, node_ref):
@@ -140,7 +141,7 @@ class Osm2Dict:
                                self.node[node]
                                .get("lat"))
             coords = np.reshape(coords,
-                                (len(coords)/2,
+                                (len(coords)//2,
                                  2))
 
         pointsXYZ = self.getPoints(coords)
@@ -185,12 +186,12 @@ class Osm2Dict:
                   for element in self.addModel.keys()
                   if element in self.data[i].get("data").get("tag").values()}
 
-        for mName, data in models.iteritems():
+        for mName, data in models.items():
             modelType = mName.split("$")[0]
 
             coords = np.array([data.get("lon"),
                                data.get("lat")])
-            coords = np.reshape(coords, (len(coords)/2, 2))
+            coords = np.reshape(coords, (len(coords)//2, 2))
 
             modelLocation = self.getPoints(coords)
 
@@ -275,6 +276,7 @@ class Osm2Dict:
                                                    [amenity]
                                                    ['color']
                                                    }
+        return
         service = [self.data[i].get("data")
                    for i in range(len(self.data))
                    if "service" in self.data[i].get("data").get("tag")]
@@ -325,7 +327,7 @@ class Osm2Dict:
                     self.flags = [addFlag]
             return True
         else:
-            print 'Error: Invalid flag! [Valid values : "a", "m", "r", "b"]'
+            print('Error: Invalid flag! [Valid values : "a", "m", "r", "b"]')
             return False
 
     def getFlags(self):
