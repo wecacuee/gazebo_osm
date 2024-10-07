@@ -89,16 +89,16 @@ Usage:
 		ign gazebo outFile.sdf
         
 
-## Demos
-    1. Export OSM file using openstreetmaps.org Export button: 
+## Demo
+1. Export OSM file using openstreetmaps.org Export button: 
 
     ![](docs/imgs/openstreetmap-export.png)
 
-    2. For a demo, I exported University of Maine campus map to `testFiles/umaine.osm`
+2. For a demo, I exported University of Maine campus map to `testFiles/umaine.osm`
     
     ![](docs/imgs/openstreetmap-umaine.png)
     
-    3. Run with `-a` to only all building, models and roads,
+3. Run with `-a` to add all building, models and roads,
     
     ```bash
      gazebo_osm$ python3 gz_osm.py -a --inputOsmFile testFiles/umaine.osm --imageFile testFiles/umaine.png --outFile testFiles/umaine.sdf
@@ -113,11 +113,11 @@ Usage:
     Found loops in  footway_143862338
     Elapsed time is 0.22879910469055176 seconds.
     ```
-    4. The image is generated using matplotlib
+4. The image is generated using matplotlib
     
     ![](testFiles/umaine.png)
     
-    6. I tested it under `ign gazebo` version 6.16 (Fortress) on Ubuntu 22.04
+6. I tested it under `ign gazebo` version 6.16 (Fortress) on Ubuntu 22.04
        (Jammy).
     
     ``bash
