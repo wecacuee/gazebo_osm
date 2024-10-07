@@ -101,7 +101,7 @@ Usage:
 3. Run with `-a` to add all building, models and roads,
     
     ```bash
-     gazebo_osm$ python3 gz_osm.py -a --inputOsmFile testFiles/umaine.osm --imageFile testFiles/umaine.png --outFile testFiles/umaine.sdf
+    gazebo_osm$ python3 gz_osm.py -a --inputOsmFile testFiles/umaine.osm --imageFile testFiles/umaine.png --outFile testFiles/umaine.sdf
     Downloading the osm data ... 
     Elapsed time is 0.28670549392700195 seconds.
     Extracting the map data for gazebo ...
@@ -120,8 +120,9 @@ Usage:
 6. I tested it under `ign gazebo` version 6.16 (Fortress) on Ubuntu 22.04
        (Jammy).
     
-    ``bash
+    ```bash
+   
     gazebo_osm$ ign gazebo -v4 testFiles/umaine.sdf
-    ``
+    ```
     
     ![](docs/imgs/gazebo-umaine.png)
