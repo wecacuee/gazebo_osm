@@ -42,6 +42,8 @@ RGBACOLORS = dict(
 class MPLBMap():
     def __init__(self, bbox):
         self.fig, self.ax = plt.subplots(
+            figsize=((bbox[2]-bbox[0])/100,
+                     (bbox[3]-bbox[1])/100),
             subplot_kw=dict(xmargin=0, ymargin=0),
             linewidth=0, dpi=300)
         self.fig.set_layout_engine('tight', pad=0, w_pad=0, h_pad=0)
