@@ -9,6 +9,7 @@
 ##############################################################################
 
 import numpy as np
+DEFAULT_BUILDING_HEIGHT = 15
 
 
 class Osm2Dict:
@@ -64,37 +65,37 @@ class Osm2Dict:
 
         self.amenityList = dict({"school": {"color": "Purple",
                                             "occurence": -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "post_office": {'color': 'Orange',
                                                  'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                 #  "university": {"color": "Purple",
                                 #                 'occurence': -1,
-                                            # "height": 3},
+                                            # "height": DEFAULT_BUILDING_HEIGHT},
                                  "library": {"color": "Purple",
                                              'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "bar": {"color": "Blue",
                                          'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "cafe": {'color': "Blue",
                                           'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "pub": {"color": "Blue",
                                          'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "restaurant": {"color": "Blue",
                                                 'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "fast_food": {"color": "Blue",
                                                'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "college": {"color": "Purple",
                                              'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                  "kindergarten": {"color": "Purple",
                                                   'occurence': -1,
-                                            "height": 3},
+                                            "height": DEFAULT_BUILDING_HEIGHT},
                                 "parking": {'color': "GroundGray",
                                             "occurence": -1,
                                             "height": 0.01}
@@ -273,7 +274,7 @@ class Osm2Dict:
                                                 buildingLoc,
                                                 "points": location,
                                                 "color": "Red",
-                                                "height": 3}
+                                                "height": DEFAULT_BUILDING_HEIGHT}
 
         amenity = [self.data[i]
                    for i in range(len(self.data))

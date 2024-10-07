@@ -27,7 +27,7 @@ def getOsmFile(box, outputFile='map.osm', inputOsmFile=''):
                                       '/api/0.6/map?bbox='
                                       + str(box)[1:-1].replace(" ", "")) as osmFile:
             with open(outputFile, 'w') as osm:
-                osm.write(osmFile.read().encode('utf-8'))
+                osm.write(osmFile.read())
 
     with open(outputFile, 'r') as osmRead:
         dataDict = osmapi.parser.ParseOsm(osmRead.read())

@@ -48,6 +48,84 @@
         <pose>0 0 0 0 0 0</pose>
       </link>
     </model>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_0</name>
+      <static>true</static>
+      <pose>57.65502964248776 -76.71021648863902 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_1</name>
+      <static>true</static>
+      <pose>161.95617275382207 -389.7829920925268 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_2</name>
+      <static>true</static>
+      <pose>163.12421334365493 -397.801168390968 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Speed limit sign</uri>
+      <name>Speed limit sign_0</name>
+      <static>true</static>
+      <pose>203.26662622139412 -414.24463898888683 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Speed limit sign</uri>
+      <name>Speed limit sign_1</name>
+      <static>true</static>
+      <pose>198.09631181959682 -418.0807943971383 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_3</name>
+      <static>true</static>
+      <pose>566.9483629970496 -355.96249855542 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_4</name>
+      <static>true</static>
+      <pose>566.0362220471577 -349.75628132462714 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_5</name>
+      <static>true</static>
+      <pose>582.5393106112668 -51.74501968160028 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_6</name>
+      <static>true</static>
+      <pose>591.9130554114643 -53.26500075621225 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_7</name>
+      <static>true</static>
+      <pose>626.7759805076548 212.67292208652776 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_8</name>
+      <static>true</static>
+      <pose>59.289392939885595 -57.444035920866966 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_9</name>
+      <static>true</static>
+      <pose>192.01606115753665 -449.2167413052747 0.0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Stop Sign</uri>
+      <name>Stop Sign_10</name>
+      <static>true</static>
+      <pose>550.7039859924338 -376.92929786278165 0.0 0 0 0</pose>
+    </include>
     <model name="Farm Store">
       <static>true</static>
       <pose>0 0 0 0 0 0</pose>
@@ -55,7 +133,7 @@
         <collision name="Farm Store">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>22.002991 -332.292017</point>
               <point>22.848461 -339.688141</point>
               <point>16.299136 -340.743961</point>
@@ -74,7 +152,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>22.002991 -332.292017</point>
               <point>22.848461 -339.688141</point>
               <point>16.299136 -340.743961</point>
@@ -95,7 +173,7 @@
         <collision name="AC">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>30.767119 -368.201136</point>
               <point>32.558044 -379.937214</point>
               <point>-2.345726 -385.256044</point>
@@ -112,7 +190,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>30.767119 -368.201136</point>
               <point>32.558044 -379.937214</point>
               <point>-2.345726 -385.256044</point>
@@ -131,7 +209,7 @@
         <collision name="Hitchner Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>8.121434 -231.881051</point>
               <point>20.189630 -314.821708</point>
               <point>7.491260 -316.665472</point>
@@ -160,7 +238,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>8.121434 -231.881051</point>
               <point>20.189630 -314.821708</point>
               <point>7.491260 -316.665472</point>
@@ -191,7 +269,7 @@
         <collision name="Rogers Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>97.866473 -220.945143</point>
               <point>100.124301 -236.895076</point>
               <point>69.868321 -241.165307</point>
@@ -210,7 +288,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>97.866473 -220.945143</point>
               <point>100.124301 -236.895076</point>
               <point>69.868321 -241.165307</point>
@@ -231,7 +309,7 @@
         <collision name="The Maples">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>43.010960 -98.717666</point>
               <point>44.934839 -111.328099</point>
               <point>34.015526 -112.990258</point>
@@ -258,7 +336,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>43.010960 -98.717666</point>
               <point>44.934839 -111.328099</point>
               <point>34.015526 -112.990258</point>
@@ -287,7 +365,7 @@
         <collision name="Raymond H. Folger Library">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>201.163892 -121.296932</point>
               <point>208.026061 -182.047596</point>
               <point>168.818857 -186.475285</point>
@@ -308,7 +386,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>201.163892 -121.296932</point>
               <point>208.026061 -182.047596</point>
               <point>168.818857 -186.475285</point>
@@ -331,7 +409,7 @@
         <collision name="Norman Smith Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>89.195947 -288.219160</point>
               <point>92.532969 -313.187698</point>
               <point>82.881313 -314.479928</point>
@@ -352,7 +430,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>89.195947 -288.219160</point>
               <point>92.532969 -313.187698</point>
               <point>82.881313 -314.479928</point>
@@ -375,7 +453,7 @@
         <collision name="Cyrus Pavilion Theatre">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>73.123080 -128.742731</point>
               <point>66.340212 -129.837713</point>
               <point>62.448500 -135.193877</point>
@@ -396,7 +474,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>73.123080 -128.742731</point>
               <point>66.340212 -129.837713</point>
               <point>62.448500 -135.193877</point>
@@ -419,7 +497,7 @@
         <collision name="Winslow Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>79.082505 -92.746665</point>
               <point>82.018390 -113.769190</point>
               <point>52.507331 -117.889181</point>
@@ -437,7 +515,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>79.082505 -92.746665</point>
               <point>82.018390 -113.769190</point>
               <point>52.507331 -117.889181</point>
@@ -457,7 +535,7 @@
         <collision name="Carnegie Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>21.238231 1.811629</point>
               <point>21.738609 -2.126694</point>
               <point>28.999637 -1.220879</point>
@@ -484,7 +562,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>21.238231 1.811629</point>
               <point>21.738609 -2.126694</point>
               <point>28.999637 -1.220879</point>
@@ -513,7 +591,7 @@
         <collision name="Holmes Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>162.344817 -53.496998</point>
               <point>164.402078 -69.651619</point>
               <point>133.189707 -73.637472</point>
@@ -535,7 +613,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>162.344817 -53.496998</point>
               <point>164.402078 -69.651619</point>
               <point>133.189707 -73.637472</point>
@@ -559,7 +637,7 @@
         <collision name="Maine Bound Adventure Center">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>95.082170 -366.551232</point>
               <point>107.391355 -364.927959</point>
               <point>109.883230 -383.863011</point>
@@ -576,7 +654,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>95.082170 -366.551232</point>
               <point>107.391355 -364.927959</point>
               <point>109.883230 -383.863011</point>
@@ -595,7 +673,7 @@
         <collision name="Shibles Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>288.302221 -302.033120</point>
               <point>339.540554 -295.855717</point>
               <point>341.898823 -315.435967</point>
@@ -612,7 +690,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>288.302221 -302.033120</point>
               <point>339.540554 -295.855717</point>
               <point>341.898823 -315.435967</point>
@@ -631,7 +709,7 @@
         <collision name="Advanced Manufacturing Center">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>368.471045 -237.633374</point>
               <point>357.296004 -238.949120</point>
               <point>306.513507 -244.929126</point>
@@ -653,7 +731,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>368.471045 -237.633374</point>
               <point>357.296004 -238.949120</point>
               <point>306.513507 -244.929126</point>
@@ -677,7 +755,7 @@
         <collision name="Aubert Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>409.942382 -24.195585</point>
               <point>401.202466 -25.660587</point>
               <point>400.802155 -23.250478</point>
@@ -717,7 +795,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>409.942382 -24.195585</point>
               <point>401.202466 -25.660587</point>
               <point>400.802155 -23.250478</point>
@@ -759,7 +837,7 @@
         <collision name="Wingate Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>345.504902 18.257139</point>
               <point>348.573856 -2.244729</point>
               <point>323.588359 -5.985968</point>
@@ -776,7 +854,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>345.504902 18.257139</point>
               <point>348.573856 -2.244729</point>
               <point>323.588359 -5.985968</point>
@@ -795,7 +873,7 @@
         <collision name="Wells Common and Conference Center">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>507.816179 29.511546</point>
               <point>508.405488 23.746278</point>
               <point>513.375903 24.258202</point>
@@ -825,7 +903,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>507.816179 29.511546</point>
               <point>508.405488 23.746278</point>
               <point>513.375903 24.258202</point>
@@ -857,7 +935,7 @@
         <collision name="Alumni Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>245.351738 -41.098897</point>
               <point>210.792390 -46.289675</point>
               <point>212.760648 -59.340872</point>
@@ -882,7 +960,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>245.351738 -41.098897</point>
               <point>210.792390 -46.289675</point>
               <point>212.760648 -59.340872</point>
@@ -909,7 +987,7 @@
         <collision name="Hart Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>452.919216 -22.919492</point>
               <point>456.444219 -45.917719</point>
               <point>501.300207 -39.041602</point>
@@ -930,7 +1008,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>452.919216 -22.919492</point>
               <point>456.444219 -45.917719</point>
               <point>501.300207 -39.041602</point>
@@ -953,7 +1031,7 @@
         <collision name="Lord Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>326.245998 -32.584129</point>
               <point>300.070732 -36.333382</point>
               <point>302.817385 -55.496402</point>
@@ -974,7 +1052,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>326.245998 -32.584129</point>
               <point>300.070732 -36.333382</point>
               <point>302.817385 -55.496402</point>
@@ -997,7 +1075,7 @@
         <collision name="Oak Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>440.465471 40.380915</point>
               <point>447.092571 -11.467632</point>
               <point>436.940477 -12.767213</point>
@@ -1015,7 +1093,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>440.465471 40.380915</point>
               <point>447.092571 -11.467632</point>
               <point>436.940477 -12.767213</point>
@@ -1035,7 +1113,7 @@
         <collision name="Fernald Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>274.162233 16.839603</point>
               <point>290.530133 19.304846</point>
               <point>292.676168 5.064468</point>
@@ -1056,7 +1134,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>274.162233 16.839603</point>
               <point>290.530133 19.304846</point>
               <point>292.676168 5.064468</point>
@@ -1079,7 +1157,7 @@
         <collision name="Memorial Gymnasium">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>698.471078 -43.269708</point>
               <point>701.796060 -71.488703</point>
               <point>703.897641 -71.244530</point>
@@ -1142,7 +1220,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>698.471078 -43.269708</point>
               <point>701.796060 -71.488703</point>
               <point>703.897641 -71.244530</point>
@@ -1207,7 +1285,7 @@
         <collision name="Corbett Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>580.359682 3.725328</point>
               <point>568.328390 2.425799</point>
               <point>569.473703 -8.175257</point>
@@ -1230,7 +1308,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>580.359682 3.725328</point>
               <point>568.328390 2.425799</point>
               <point>569.473703 -8.175257</point>
@@ -1255,7 +1333,7 @@
         <collision name="Bennett Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>600.065839 -175.798694</point>
               <point>600.888885 -183.052404</point>
               <point>604.513828 -182.642752</point>
@@ -1290,7 +1368,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>600.065839 -175.798694</point>
               <point>600.888885 -183.052404</point>
               <point>604.513828 -182.642752</point>
@@ -1327,7 +1405,7 @@
         <collision name="Coburn Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>178.289985 22.526654</point>
               <point>180.669520 6.466565</point>
               <point>175.732465 5.734060</point>
@@ -1349,7 +1427,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>178.289985 22.526654</point>
               <point>180.669520 6.466565</point>
               <point>175.732465 5.734060</point>
@@ -1373,7 +1451,7 @@
         <collision name="Neville Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>440.472931 -311.469410</point>
               <point>445.665938 -315.635626</point>
               <point>441.863307 -320.369367</point>
@@ -1429,7 +1507,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>440.472931 -311.469410</point>
               <point>445.665938 -315.635626</point>
               <point>441.863307 -320.369367</point>
@@ -1487,7 +1565,7 @@
         <collision name="Donald P. Corbett Business Building">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>333.404660 -337.568680</point>
               <point>338.689042 -384.038304</point>
               <point>325.801639 -385.519817</point>
@@ -1516,7 +1594,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>333.404660 -337.568680</point>
               <point>338.689042 -384.038304</point>
               <point>325.801639 -385.519817</point>
@@ -1547,7 +1625,7 @@
         <collision name="Crosby Laboratory">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>422.521666 -201.755495</point>
               <point>423.344717 -208.269046</point>
               <point>431.417436 -207.252760</point>
@@ -1570,7 +1648,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>422.521666 -201.755495</point>
               <point>423.344717 -208.269046</point>
               <point>431.417436 -207.252760</point>
@@ -1595,7 +1673,7 @@
         <collision name="Boardman Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>507.228782 -160.104285</point>
               <point>507.884995 -166.491742</point>
               <point>510.387559 -190.742014</point>
@@ -1633,7 +1711,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>507.228782 -160.104285</point>
               <point>507.884995 -166.491742</point>
               <point>510.387559 -190.742014</point>
@@ -1673,7 +1751,7 @@
         <collision name="Ferland Engineering Education and Design Center">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>519.583858 -206.155134</point>
               <point>523.699734 -252.544799</point>
               <point>459.184785 -261.187436</point>
@@ -1690,7 +1768,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>519.583858 -206.155134</point>
               <point>523.699734 -252.544799</point>
               <point>459.184785 -261.187436</point>
@@ -1709,7 +1787,7 @@
         <collision name="Little Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>428.992098 -162.736876</point>
               <point>429.715017 -168.612460</point>
               <point>431.905550 -168.344614</point>
@@ -1732,7 +1810,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>428.992098 -162.736876</point>
               <point>429.715017 -168.612460</point>
               <point>431.905550 -168.344614</point>
@@ -1757,7 +1835,7 @@
         <collision name="Gannett Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>686.761394 -364.792504</point>
               <point>688.441299 -379.575329</point>
               <point>606.235449 -388.889554</point>
@@ -1775,7 +1853,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>686.761394 -364.792504</point>
               <point>688.441299 -379.575329</point>
               <point>606.235449 -388.889554</point>
@@ -1795,7 +1873,7 @@
         <collision name="Cumberland Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>595.206194 -409.422797</point>
               <point>599.611940 -445.706940</point>
               <point>605.297438 -492.544677</point>
@@ -1817,7 +1895,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>595.206194 -409.422797</point>
               <point>599.611940 -445.706940</point>
               <point>605.297438 -492.544677</point>
@@ -1841,7 +1919,7 @@
         <collision name="Cutler Health Center">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>600.425605 -285.163879</point>
               <point>603.061976 -307.830685</point>
               <point>606.675791 -307.413087</point>
@@ -1868,7 +1946,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>600.425605 -285.163879</point>
               <point>603.061976 -307.830685</point>
               <point>606.675791 -307.413087</point>
@@ -1897,7 +1975,7 @@
         <collision name="Sculpture Studio">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>279.546803 -421.233876</point>
               <point>284.330729 -458.220767</point>
               <point>266.650900 -460.514050</point>
@@ -1914,7 +1992,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>279.546803 -421.233876</point>
               <point>284.330729 -458.220767</point>
               <point>266.650900 -460.514050</point>
@@ -1933,7 +2011,7 @@
         <collision name="Jenness Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>518.871072 -412.452083</point>
               <point>516.423591 -393.534002</point>
               <point>527.420681 -392.107765</point>
@@ -1975,7 +2053,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>518.871072 -412.452083</point>
               <point>516.423591 -393.534002</point>
               <point>527.420681 -392.107765</point>
@@ -2019,7 +2097,7 @@
         <collision name="Advanced Structures and Composites Center">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>404.415407 -526.719120</point>
               <point>405.027419 -532.035486</point>
               <point>458.811893 -525.848266</point>
@@ -2061,7 +2139,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>404.415407 -526.719120</point>
               <point>405.027419 -532.035486</point>
               <point>458.811893 -525.848266</point>
@@ -2105,7 +2183,7 @@
         <collision name="office_building_145632462">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>111.530808 -414.195447</point>
               <point>113.566615 -428.451838</point>
               <point>100.690366 -430.287937</point>
@@ -2122,7 +2200,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>111.530808 -414.195447</point>
               <point>113.566615 -428.451838</point>
               <point>100.690366 -430.287937</point>
@@ -2141,7 +2219,7 @@
         <collision name="Perkins">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>46.416489 -435.710700</point>
               <point>48.463725 -453.669237</point>
               <point>1.528783 -459.792740</point>
@@ -2160,7 +2238,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>46.416489 -435.710700</point>
               <point>48.463725 -453.669237</point>
               <point>1.528783 -459.792740</point>
@@ -2181,7 +2259,7 @@
         <collision name="Engineering Storage">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>64.440227 -421.389827</point>
               <point>60.435310 -391.514156</point>
               <point>51.384117 -392.719832</point>
@@ -2202,7 +2280,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>64.440227 -421.389827</point>
               <point>60.435310 -391.514156</point>
               <point>51.384117 -392.719832</point>
@@ -2225,7 +2303,7 @@
         <collision name="Mahaney Dome">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>626.475363 -200.575549</point>
               <point>627.776701 -211.664774</point>
               <point>619.592787 -212.625906</point>
@@ -2250,7 +2328,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>626.475363 -200.575549</point>
               <point>627.776701 -211.664774</point>
               <point>619.592787 -212.625906</point>
@@ -2277,7 +2355,7 @@
         <collision name="NASA Habitat Barn">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>646.681867 -265.944680</point>
               <point>627.511976 -268.686291</point>
               <point>630.370557 -288.690945</point>
@@ -2294,7 +2372,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>646.681867 -265.944680</point>
               <point>627.511976 -268.686291</point>
               <point>630.370557 -288.690945</point>
@@ -2313,7 +2391,7 @@
         <collision name="Center Stevens Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>319.287886 -188.321822</point>
               <point>300.540502 -191.031822</point>
               <point>278.813108 -194.175126</point>
@@ -2341,7 +2419,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>319.287886 -188.321822</point>
               <point>300.540502 -191.031822</point>
               <point>278.813108 -194.175126</point>
@@ -2371,7 +2449,7 @@
         <collision name="Poultry Research">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>130.333750 -412.335372</point>
               <point>132.336289 -428.009496</point>
               <point>140.342255 -426.985015</point>
@@ -2388,7 +2466,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>130.333750 -412.335372</point>
               <point>132.336289 -428.009496</point>
               <point>140.342255 -426.985015</point>
@@ -2407,7 +2485,7 @@
         <collision name="North Stevens Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>334.900537 -216.226949</point>
               <point>342.617427 -215.116137</point>
               <point>350.423273 -213.997448</point>
@@ -2430,7 +2508,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>334.900537 -216.226949</point>
               <point>342.617427 -215.116137</point>
               <point>350.423273 -213.997448</point>
@@ -2455,7 +2533,7 @@
         <collision name="South Stevens Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>256.552964 -226.972948</point>
               <point>272.531594 -224.703996</point>
               <point>269.984623 -206.706650</point>
@@ -2477,7 +2555,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>256.552964 -226.972948</point>
               <point>272.531594 -224.703996</point>
               <point>269.984623 -206.706650</point>
@@ -2501,7 +2579,7 @@
         <collision name="UMaine Memorial Union bus stop">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>177.339886 -281.953406</point>
               <point>173.726317 -287.931797</point>
               <point>170.935249 -286.238483</point>
@@ -2518,7 +2596,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>177.339886 -281.953406</point>
               <point>173.726317 -287.931797</point>
               <point>170.935249 -286.238483</point>
@@ -2537,7 +2615,7 @@
         <collision name="office_building_1044573603">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>331.930969 -195.630621</point>
               <point>320.600262 -197.458264</point>
               <point>320.900552 -199.529716</point>
@@ -2556,7 +2634,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>331.930969 -195.630621</point>
               <point>320.600262 -197.458264</point>
               <point>320.900552 -199.529716</point>
@@ -2577,7 +2655,7 @@
         <collision name="office_building_1044573604">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>279.802953 -200.988119</point>
               <point>269.395158 -202.571591</point>
               <point>269.684329 -204.595801</point>
@@ -2596,7 +2674,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>279.802953 -200.988119</point>
               <point>269.395158 -202.571591</point>
               <point>269.684329 -204.595801</point>
@@ -2617,7 +2695,7 @@
         <collision name="Murray Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>358.217037 -418.542897</point>
               <point>363.179029 -457.915819</point>
               <point>342.563677 -460.516458</point>
@@ -2636,7 +2714,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>358.217037 -418.542897</point>
               <point>363.179029 -457.915819</point>
               <point>342.563677 -460.516458</point>
@@ -2657,7 +2735,7 @@
         <collision name="Class of 1944 Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>229.037069 -336.936203</point>
               <point>228.402883 -329.752968</point>
               <point>231.571906 -329.114818</point>
@@ -2689,7 +2767,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>229.037069 -336.936203</point>
               <point>228.402883 -329.752968</point>
               <point>231.571906 -329.114818</point>
@@ -2723,7 +2801,7 @@
         <collision name="Collins Center for the Arts">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>183.325473 -348.847799</point>
               <point>186.573603 -370.838648</point>
               <point>202.530776 -382.738997</point>
@@ -2752,7 +2830,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>183.325473 -348.847799</point>
               <point>186.573603 -370.838648</point>
               <point>202.530776 -382.738997</point>
@@ -2783,7 +2861,7 @@
         <collision name="Memorial Union">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>229.624532 -299.350043</point>
               <point>228.879295 -294.387953</point>
               <point>221.318085 -295.357098</point>
@@ -2864,7 +2942,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>229.624532 -299.350043</point>
               <point>228.879295 -294.387953</point>
               <point>221.318085 -295.357098</point>
@@ -2947,7 +3025,7 @@
         <collision name="Barrows Hall">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>454.904462 -277.380896</point>
               <point>452.914083 -277.601514</point>
               <point>435.845742 -279.461023</point>
@@ -2980,7 +3058,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>454.904462 -277.380896</point>
               <point>452.914083 -277.601514</point>
               <point>435.845742 -279.461023</point>
@@ -3799,7 +3877,7 @@
         <collision name="Raymond H. Folger Library_143497166">
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>201.163892 -121.296932</point>
               <point>208.026061 -182.047596</point>
               <point>168.818857 -186.475285</point>
@@ -3820,7 +3898,7 @@
           </material>
           <geometry>
             <polyline>
-              <height>3.000000</height>
+              <height>15.000000</height>
               <point>201.163892 -121.296932</point>
               <point>208.026061 -182.047596</point>
               <point>168.818857 -186.475285</point>

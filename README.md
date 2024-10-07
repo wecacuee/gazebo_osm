@@ -1,31 +1,21 @@
-OSM Plug-in for Gazebo
+# OSM to SDF converter for Gazebo
 	
 	Author: Tashwin Khurana
+    Edits by: Vikas Dhiman
 	
-	Version: 1.0
+	Version: 2.0
 	
 	Description: Open Street Maps plugin for Gazebo
-	             This folder contains files for building osm_plugin for gazebo simulator.
+	             This folder contains files for converting OSM maps to Gazebo simulator compatible SDF files.
 	
 
-Dependencies:
+## Dependencies:
 
-	Python 2.7
-
-	Mapnik:
-
-	sudo apt-get install -y python-software-properties
-
-	sudo add-apt-repository ppa:mapnik/v2.2.0
-
-	sudo apt-get update
-
-	sudo apt-get install libmapnik libmapnik-dev mapnik-utils python-mapnik
+	Python 3.10
+    pip install -r requirements.txt
 
 
-Files:
-
-
+## Scripts and their roles
 osm2dict.py
 
 	Collects data about certain types of roads based on input coordinates from osm database and converts the information received to format that can be used to build sdf files.
@@ -47,6 +37,7 @@ getOsmFile.py
 
        Downloads the osm database of the specified area.
 
+## Usage
 gz_osm.py
 
        Command line compatible program which combine the functionality of all the above classes and functions to output the .sdf file for gazebo. 
@@ -77,7 +68,7 @@ gz_osm.py
 	  -a, --displayAll      Display roads and models
 	  --interactive         Starts the interactive version of the program
 
-Test files:
+## Test files:
 
 Unit testing for each of the source files is provided in the testfiles/ folder.
 
@@ -95,4 +86,42 @@ Usage:
 	Output file: outFile.sdf (default)
 
 	Check the file on gazebo
-		gazebo outFile.sdf
+		ign gazebo outFile.sdf
+        
+
+## Demos
+    1. Export OSM file using openstreetmaps.org Export button: 
+
+    ![](docs/imgs/openstreetmap-export.png)
+
+    2. For a demo, I exported University of Maine campus map to `testFiles/umaine.osm`
+    
+    ![](docs/imgs/openstreetmap-umaine.png)
+    
+    3. Run with `-a` to only all building, models and roads,
+    
+    ```bash
+     gazebo_osm$ python3 gz_osm.py -a --inputOsmFile testFiles/umaine.osm --imageFile testFiles/umaine.png --outFile testFiles/umaine.sdf
+    Downloading the osm data ... 
+    Elapsed time is 0.28670549392700195 seconds.
+    Extracting the map data for gazebo ...
+    Parsing relation Name:  University Mall
+    Elapsed time is 0.019033432006835938 seconds.
+    Building the image file ...
+    Elapsed time is 0.6773087978363037 seconds.
+    Building sdf file ...
+    Found loops in  footway_143862338
+    Elapsed time is 0.22879910469055176 seconds.
+    ```
+    4. The image is generated using matplotlib
+    
+    ![](testFiles/umaine.png)
+    
+    6. I tested it under `ign gazebo` version 6.16 (Fortress) on Ubuntu 22.04
+       (Jammy).
+    
+    ``bash
+    gazebo_osm$ ign gazebo -v4 testFiles/umaine.sdf
+    ``
+    
+    ![](docs/imgs/gazebo-umaine.png)
